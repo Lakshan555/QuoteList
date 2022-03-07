@@ -21,6 +21,10 @@ class _QuoteListState extends State<QuoteList> {
     Quote(author: 'Oscar Wilde', text: 'The truth is rarely pure and never simple')
   ];
 
+  // Widget quteTemplete(quote){
+  //   return QuoteCard(quote:quote);
+  // }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,10 +36,47 @@ class _QuoteListState extends State<QuoteList> {
       ),
 
       body: Column(
-        children: quotes.map((quote) => Text('${quote.text} - ${quote.author}')).toList(),
+        children: quotes.map((quote) => QuoteCard(quote:quote)).toList(),
 
       ),
 
+    );
+  }
+}
+
+class QuoteCard extends StatelessWidget {
+
+  final Quote quote;
+
+  QuoteCard({required this.quote});
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      margin: EdgeInsets.fromLTRB(16, 16, 16, 0),
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Text(
+              quote.text,
+              style: TextStyle(
+                fontSize: 18,
+                color: Colors.grey[600]
+              ),
+            ),
+            SizedBox(height: 6),
+            Text(
+              quote.author,
+              style: TextStyle(
+                  fontSize: 18,
+                  color: Colors.grey[800]
+              ),
+            ),
+          ],
+        ),
+      ) ,
     );
   }
 }
